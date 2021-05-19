@@ -49,11 +49,11 @@ class ClienteFragment : Fragment() {
         var listacliente = view.findViewById<RecyclerView>(R.id.listaCliente)
 
         btnjson.setOnClickListener() {
-            Toast.makeText(context, "si estoy jalando", Toast.LENGTH_SHORT).show()
-            var urldatos = "https://jsonplaceholder.typicode.com/users"
-            var requestt = Request.Builder().url(urldatos).build()
+            Toast.makeText(context, "btn click", Toast.LENGTH_SHORT).show()
+            var urldatos = "http://192.168.1.79:8000/api/lista_productos"
+            var request = Request.Builder().url(urldatos).build()
             var cliente = OkHttpClient()
-            cliente.newCall(requestt).enqueue(object : Callback {
+            cliente.newCall(request).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     var textojson = response?.body?.string()
                     //print(textojson)
@@ -61,15 +61,15 @@ class ClienteFragment : Fragment() {
                     val actMain = activity as Activity
                     actMain.runOnUiThread {
                         var datosjson = Gson()
-                        var clientes = datosjson?.fromJson(textojson, Array<DatosModel>::class.java)
+                        var clientes = datosjson?.fromJson(textojson, Array<DatosProducto>::class.java)
                         //definir adaptador
                         listacliente.adapter = ClientesAdapter(clientes)
-                        Toast.makeText(context, "Sincroniza al 100", Toast.LENGTH_SHORT).show()
+                        //Toast.makeText(context, "Sincroniza al 100", Toast.LENGTH_SHORT).show()
                     }
 
                 }
                 override fun onFailure(call: Call, e: IOException) {
-                    Toast.makeText(context, "no jale bro sorry", Toast.LENGTH_SHORT).show()
+                   Toast.makeText(context, "no jale bro sorry", Toast.LENGTH_SHORT).show()
                 }
             })
             listacliente.layoutManager = LinearLayoutManager(context)
@@ -78,11 +78,11 @@ class ClienteFragment : Fragment() {
     }
 
     //----------------------------------- clase ------------------------------------------------------------------
-    class DatosModel(
+    class DatosProducto(
         val id: Int,
-        val name: String,
-        val username: String,
-        val email: String
+        val codigo: String,
+        val nombre: String,
+        val marca: String
     )
 
 

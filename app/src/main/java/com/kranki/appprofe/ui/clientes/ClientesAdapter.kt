@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.kranki.appprofe.R
 
-class ClientesAdapter(val datos: Array<ClienteFragment.DatosModel>) :
+class ClientesAdapter(val datos: Array<ClienteFragment.DatosProducto>) :
     RecyclerView.Adapter<CustomView>() {
 
     override fun getItemCount(): Int {
@@ -25,15 +25,15 @@ class ClientesAdapter(val datos: Array<ClienteFragment.DatosModel>) :
     override fun onBindViewHolder(holder: CustomView, position: Int) {
         //nombre
         var nombre = holder?.itemView.findViewById(R.id.txt_nombre) as TextView
-        nombre.text = datos[position].name
+        nombre.text = datos[position].codigo
 
         //usuario
         var usuario = holder?.itemView.findViewById(R.id.txt_usuario) as TextView
-        usuario.text = datos[position].username
+        usuario.text = datos[position].nombre
 
         //correo
         var correo = holder?.itemView.findViewById(R.id.txt_email) as TextView
-        correo.text = datos[position].email
+        correo.text = datos[position].marca
     }
 
 
