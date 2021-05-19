@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".DatosProducto">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <!--codigo-->
+    <EditText
+        android:id="@+id/idtxtCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/txtcodigo"
+        android:inputType="textPersonName" />
+    <!--nobmre-->
+    <EditText
+        android:id="@+id/idtxtnom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/txtnombre"
+        android:inputType="textPersonName" />
+    <!--marca-->
+    <EditText
+        android:id="@+id/idtxtmarca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/txtmarca"
+        android:inputType="textPersonName" />
+    <!--description-->
+    <EditText
+        android:id="@+id/idtxtdesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/txtdescrip"
+        android:inputType="textPersonName" />
+    <!--precio-->
+    <EditText
+        android:id="@+id/idtxtprec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/txtprecio"
+        android:inputType="number" />
+    <!--cantidad-->
+    <EditText
+        android:id="@+id/idtxtcant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/txtcantidad"
+        android:inputType="number" />
+    <!--Estatus-->
+    <EditText
+        android:id="@+id/idtxtestat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/txtesta"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/idtxtbtnenviar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txtbtng" />
+
+
+</LinearLayout>

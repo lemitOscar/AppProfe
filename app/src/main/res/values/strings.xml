@@ -11,7 +11,19 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_clientes">Cliente</string>
+    <string name="menu_productos">Productos</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Petición jusjus</string>
     <string name="clienteTextbnt">Solicitar Json</string>
+
+    <!-- Fracmento datos producto -->
+    <string name="txtcodigo">Código</string>
+    <string name="txtnombre">Nombre</string>
+    <string name="txtmarca">Marca</string>
+    <string name="txtdescrip">Descripción</string>
+    <string name="txtprecio">Precio</string>
+    <string name="txtcantidad">Cantidad</string>
+    <string name="txtesta">Estatus</string>
+    <string name="txtbtng">Enviar</string>
+
 </resources>

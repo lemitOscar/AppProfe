@@ -50,7 +50,7 @@ class ClienteFragment : Fragment() {
 
         btnjson.setOnClickListener() {
             Toast.makeText(context, "btn click", Toast.LENGTH_SHORT).show()
-            var urldatos = "http://192.168.1.79:8000/api/lista_productos"
+            var urldatos = "http://192.168.1.79:8000/api/listar_productos"
             var request = Request.Builder().url(urldatos).build()
             var cliente = OkHttpClient()
             cliente.newCall(request).enqueue(object : Callback {

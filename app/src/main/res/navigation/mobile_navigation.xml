@@ -29,5 +29,9 @@
         android:label="@string/menu_clientes"
         tools:layout="@layout/fragment_cliente" />
 
-
+    <fragment
+        android:id="@+id/nav_regis_datos"
+        android:name="com.kranki.appprofe.ui.producto.DatosProducto"
+        android:label="@string/menu_productos"
+        tools:layout="@layout/fragment_datos_producto" />
 </navigation>
