@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import com.google.gson.Gson
 import com.kranki.appprofe.R
 import okhttp3.*
@@ -41,7 +42,7 @@ class DatosProducto : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        // **************************************************** ESTA ES LA CLASE PARA INSERTAR PRODUCTOS Y ACTURALIZAR****************************************
         var view = inflater.inflate(R.layout.fragment_datos_producto, container, false)
         var btnguardar = view.findViewById<Button>(R.id.idtxtbtnenviar)
         //recibo los id de la vista
@@ -52,12 +53,28 @@ class DatosProducto : Fragment() {
         var tprecio = view.findViewById<TextView>(R.id.idtxtprec)
         var tcanti = view.findViewById<TextView>(R.id.idtxtcant)
         var testat = view.findViewById<TextView>(R.id.idtxtestat)
+
+        //Prueba
+        //tnombre.text = arguments?.getString("ejemplo");
+        var datosGson = Gson();
+        var datoProd = datosGson.fromJson(arguments?.getString("dproductos"),datosproductoc::class.java)
+        tcodigo.text = datoProd.codigo
+        tnombre.text = datoProd.nombre
+        tmarca.text = datoProd.marca
+        tdescrip.text = datoProd.descripcion
+        tprecio.text = datoProd.precio.toString()
+        tcanti.text = datoProd.cantidad.toString()
+        testat.text = datoProd.estatus.toString()
+
+
+
         btnguardar.setOnClickListener {
             var url = "http://192.168.1.79:8000/api/guardar_productos"
             var gson = Gson()
             val tipopet = "application/json;charset=UTF-8" .toMediaType()
             var datosendjson = gson.toJson(
-                datosproducto(
+                datosproductoc(
+                    datoProd.id,
                     tcodigo.text.toString(),
                     tnombre.text.toString(),
                     tmarca.text.toString(),
@@ -72,6 +89,7 @@ class DatosProducto : Fragment() {
             client.newCall(request.build()).enqueue(responseCallback = object : Callback {
 
                 override fun onResponse(call: Call, response: Response) {
+                   // Toast.makeText(this, "Gurdado correctamente...", Toast.LENGTH_SHORT).show()
                     println("ok")
                 }
 
@@ -86,7 +104,8 @@ class DatosProducto : Fragment() {
     }
 
     //creo la clase con la que modelo los datos a mandar
-    data class datosproducto(
+    data class datosproductoc(
+        var id: Int?,
         var codigo: String,
         var nombre: String,
         var marca: String,
