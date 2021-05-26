@@ -1,5 +1,6 @@
 package com.kranki.appprofe.ui.producto
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -92,8 +93,11 @@ class DatosProducto : Fragment() {
             var client = OkHttpClient()
             client.newCall(request.build()).enqueue(responseCallback = object : Callback {
                 override fun onResponse(call: Call, response: Response) {
-                    // Toast.makeText(this, "Gurdado correctamente...", Toast.LENGTH_SHORT).show()
-                    println("ok")
+                    val actMain = activity as Activity
+                    actMain.runOnUiThread {
+                        Toast.makeText(context, "Gurdado correctamente...", Toast.LENGTH_SHORT).show()
+                        println("ok")
+                    }
                 }
 
                 override fun onFailure(call: Call, e: IOException) {
@@ -111,9 +115,13 @@ class DatosProducto : Fragment() {
             var request = Request.Builder().url(url).delete(datosendjson.toRequestBody(tipopet))
             var client = OkHttpClient()
             client.newCall(request.build()).enqueue(responseCallback = object : Callback {
+
                 override fun onResponse(call: Call, response: Response) {
-                    // Toast.makeText(this, "Gurdado correctamente...", Toast.LENGTH_SHORT).show()
-                    println("borrado ok")
+                    val actMain = activity as Activity
+                    actMain.runOnUiThread {
+                        Toast.makeText(context, "Borrado Correctamente", Toast.LENGTH_SHORT).show()
+                        println("borrado ok")
+                    }
                 }
                 override fun onFailure(call: Call, e: IOException) {
                     println("tus mamadas")
