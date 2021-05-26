@@ -27,5 +27,6 @@
     <string name="txtcantidad">Cantidad</string>
     <string name="txtesta">Estatus</string>
     <string name="txtbtng">Enviar</string>
+    <string name="txtbtnborrar">Eliminar</string>
 
 </resources>

@@ -79,6 +79,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/txtbtng" />
+    <Button
+        android:id="@+id/idtxteliminarr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txtbtnborrar" />
+
 
 
 </LinearLayout>

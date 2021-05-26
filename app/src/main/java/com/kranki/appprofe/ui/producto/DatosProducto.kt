@@ -44,7 +44,9 @@ class DatosProducto : Fragment() {
     ): View? {
         // **************************************************** ESTA ES LA CLASE PARA INSERTAR PRODUCTOS Y ACTURALIZAR****************************************
         var view = inflater.inflate(R.layout.fragment_datos_producto, container, false)
+        //botones
         var btnguardar = view.findViewById<Button>(R.id.idtxtbtnenviar)
+        var btnelimiar = view.findViewById<Button>(R.id.idtxteliminarr)
         //recibo los id de la vista
         var tcodigo = view.findViewById<TextView>(R.id.idtxtCode)
         var tnombre = view.findViewById<TextView>(R.id.idtxtnom)
@@ -56,22 +58,24 @@ class DatosProducto : Fragment() {
 
         //Prueba
         //tnombre.text = arguments?.getString("ejemplo");
+        //para hacer el update
         var datosGson = Gson();
-        var datoProd = datosGson.fromJson(arguments?.getString("dproductos"),datosproductoc::class.java)
-        tcodigo.text = datoProd.codigo
-        tnombre.text = datoProd.nombre
-        tmarca.text = datoProd.marca
-        tdescrip.text = datoProd.descripcion
-        tprecio.text = datoProd.precio.toString()
-        tcanti.text = datoProd.cantidad.toString()
-        testat.text = datoProd.estatus.toString()
+        var datoProd =
+            datosGson.fromJson(arguments?.getString("dproductos"), datosproductoc::class.java)
+        tcodigo.text = datoProd?.codigo
+        tnombre.text = datoProd?.nombre
+        tmarca.text = datoProd?.marca
+        tdescrip.text = datoProd?.descripcion
+        tprecio.text = datoProd?.precio.toString()
+        tcanti.text = datoProd?.cantidad.toString()
+        testat.text = datoProd?.estatus.toString()
 
 
-
+        //----------------------------------------- metodo para guardar y actualizar------------------------------
         btnguardar.setOnClickListener {
             var url = "http://192.168.1.79:8000/api/guardar_productos"
             var gson = Gson()
-            val tipopet = "application/json;charset=UTF-8" .toMediaType()
+            val tipopet = "application/json;charset=UTF-8".toMediaType()
             var datosendjson = gson.toJson(
                 datosproductoc(
                     datoProd.id,
@@ -87,21 +91,42 @@ class DatosProducto : Fragment() {
             var request = Request.Builder().url(url).post(datosendjson.toRequestBody(tipopet))
             var client = OkHttpClient()
             client.newCall(request.build()).enqueue(responseCallback = object : Callback {
-
                 override fun onResponse(call: Call, response: Response) {
-                   // Toast.makeText(this, "Gurdado correctamente...", Toast.LENGTH_SHORT).show()
+                    // Toast.makeText(this, "Gurdado correctamente...", Toast.LENGTH_SHORT).show()
                     println("ok")
                 }
 
                 override fun onFailure(call: Call, e: IOException) {
                     println("salio mal")
                 }
-
             })
-
+        }
+       // return view
+        //---------------------------------- metodo para borrar
+        btnelimiar.setOnClickListener {
+            var url = "http://192.168.1.79:8000/api/eliminar_productos";
+            var gson = Gson()
+            val tipopet = "application/json;charset=UTF-8".toMediaType()
+            var datosendjson = gson.toJson(datoeliminar(datoProd.id))
+            var request = Request.Builder().url(url).delete(datosendjson.toRequestBody(tipopet))
+            var client = OkHttpClient()
+            client.newCall(request.build()).enqueue(responseCallback = object : Callback {
+                override fun onResponse(call: Call, response: Response) {
+                    // Toast.makeText(this, "Gurdado correctamente...", Toast.LENGTH_SHORT).show()
+                    println("borrado ok")
+                }
+                override fun onFailure(call: Call, e: IOException) {
+                    println("tus mamadas")
+                }
+            })
         }
         return view
+
     }
+
+    data class  datoeliminar(
+        var id: Int?
+    )
 
     //creo la clase con la que modelo los datos a mandar
     data class datosproductoc(
