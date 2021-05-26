@@ -78,7 +78,7 @@ class DatosProducto : Fragment() {
             val tipopet = "application/json;charset=UTF-8".toMediaType()
             var datosendjson = gson.toJson(
                 datosproductoc(
-                    datoProd.id,
+                    datoProd?.id,
                     tcodigo.text.toString(),
                     tnombre.text.toString(),
                     tmarca.text.toString(),
