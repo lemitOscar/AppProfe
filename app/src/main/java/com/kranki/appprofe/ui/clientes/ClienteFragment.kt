@@ -44,7 +44,6 @@ class ClienteFragment : Fragment() {
             R.id.action_settings -> {
                 //sincronizar(listaClientes)
             }
-
             R.id.action_sincro -> {
                 sincronizar(listaClientes)
             }
@@ -75,7 +74,7 @@ class ClienteFragment : Fragment() {
         return view
     }
 
-    fun sincronizar(listacliente: RecyclerView) {
+    public fun sincronizar(listacliente: RecyclerView) {
         Toast.makeText(context, "btn click", Toast.LENGTH_SHORT).show()
         var urldatos = "http://192.168.1.79:8000/api/listar_productos"
         var request = Request.Builder().url(urldatos).build()
