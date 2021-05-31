@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">AppProfe</string>
+    <string name="app_name">Api Laravel</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Bienvenido</string>
+    <string name="nav_header_subtitle">Api Laravel Móvil</string>
     <string name="nav_header_desc">Navigation header</string>
     <!-- TODO: boton de navegacion de ajustes y ayudas -->
     <string name="action_settings">Settings</string>
