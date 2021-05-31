@@ -1,4 +1,4 @@
-package com.kranki.appprofe.ui.producto
+package com.kranki.appprofe.ui.almacen
 
 import android.app.Activity
 import android.os.Bundle
@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.gson.Gson
 import com.kranki.appprofe.R
+import com.kranki.appprofe.ui.producto.DatosProducto
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -23,10 +24,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [DatosProducto.newInstance] factory method to
+ * Use the [almacenAddFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DatosProducto : Fragment() {
+class almacenAddFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -43,50 +44,47 @@ class DatosProducto : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // **************************************************** ESTA ES LA CLASE PARA INSERTAR PRODUCTOS Y ACTURALIZAR****************************************
-        var view = inflater.inflate(R.layout.fragment_datos_producto, container, false)
+        // Inflate the layout for this fragment
+        var view = inflater.inflate(R.layout.fragment_almacen_add, container, false)
+
         //botones
         var btnguardar = view.findViewById<Button>(R.id.idtxtbtnenviar)
         var btnelimiar = view.findViewById<Button>(R.id.idtxteliminarr)
-        //recibo los id de la vista
-        var tcodigo = view.findViewById<TextView>(R.id.idtxtCode)
-        var tnombre = view.findViewById<TextView>(R.id.idtxtnom)
-        var tmarca = view.findViewById<TextView>(R.id.idtxtmarca)
-        var tdescrip = view.findViewById<TextView>(R.id.idtxtdesc)
-        var tprecio = view.findViewById<TextView>(R.id.idtxtprec)
-        var tcanti = view.findViewById<TextView>(R.id.idtxtcant)
-        var testat = view.findViewById<TextView>(R.id.idtxtestat)
 
-        //Prueba
-        //tnombre.text = arguments?.getString("ejemplo");
-        //para hacer el update
+        var nombre  = view.findViewById<TextView>(R.id.idtxtnom_a)
+        var telefono  = view.findViewById<TextView>(R.id.idtxttel_a)
+        var pais  = view.findViewById<TextView>(R.id.idtxtpais_a)
+        var muncipio = view.findViewById<TextView>(R.id.idtxtmuni_a)
+        var localidad = view.findViewById<TextView>(R.id.idtxtloca_a)
+        var cp = view.findViewById<TextView>(R.id.idtxtcodi_a)
+        var calle = view.findViewById<TextView>(R.id.idtxtcalle_a)
+        //mandar los datos
         var datosGson = Gson();
-        var datoProd =
-            datosGson.fromJson(arguments?.getString("dproductos"), datosproductoc::class.java)
-        tcodigo.text = datoProd?.codigo
-        tnombre.text = datoProd?.nombre
-        tmarca.text = datoProd?.marca
-        tdescrip.text = datoProd?.descripcion
-        tprecio.text = datoProd?.precio
-        tcanti.text = datoProd?.cantidad
-        testat.text = datoProd?.estatus
+        var datoProdd = datosGson.fromJson(arguments?.getString("dpalmacen"), datosalmacen::class.java)
 
+        nombre.text =  datoProdd?.nombre
+        telefono.text = datoProdd?.telefono
+        pais.text = datoProdd?.pais
+        muncipio.text = datoProdd?.municipio
+        localidad.text = datoProdd?.localidad
+        cp.text = datoProdd?.codigo_postal
+        calle.text = datoProdd?.calle
 
-        //----------------------------------------- metodo para guardar y actualizar------------------------------
-        btnguardar.setOnClickListener {
-            var url = "http://192.168.1.79:8000/api/guardar_productos"
+        //---------------------------------------- metdods para guardar y actualizar
+        btnguardar.setOnClickListener{
+            var url = "http://192.168.1.79:8000/api/guardar_almacenes"
             var gson = Gson()
             val tipopet = "application/json;charset=UTF-8".toMediaType()
             var datosendjson = gson.toJson(
-                datosproductoc(
-                    datoProd?.id,
-                    tcodigo.text.toString(),
-                    tnombre.text.toString(),
-                    tmarca.text.toString(),
-                    tdescrip.text.toString(),
-                    tprecio.text.toString(),
-                    tcanti.text.toString(),
-                    testat.text.toString(),
+                datosalmacen(
+                    datoProdd?.id,
+                    nombre.text.toString(),
+                    telefono.text.toString(),
+                    pais.text.toString(),
+                    muncipio.text.toString(),
+                    localidad.text.toString(),
+                    cp.text.toString(),
+                    calle.text.toString()
                 )
             )
             var request = Request.Builder().url(url).post(datosendjson.toRequestBody(tipopet))
@@ -99,19 +97,18 @@ class DatosProducto : Fragment() {
                         println("ok")
                     }
                 }
-
                 override fun onFailure(call: Call, e: IOException) {
                     println("salio mal")
                 }
             })
         }
-       // return view
-        //---------------------------------- metodo para borrar
+
+        //metodo para borrar
         btnelimiar.setOnClickListener {
-            var url = "http://192.168.1.79:8000/api/eliminar_productos";
+            var url = "http://192.168.1.79:8000/api/eliminar_almacen";
             var gson = Gson()
             val tipopet = "application/json;charset=UTF-8".toMediaType()
-            var datosendjson = gson.toJson(datoeliminar(datoProd.id))
+            var datosendjson = gson.toJson(DatosProducto.datoeliminar(datoProdd.id))
             var request = Request.Builder().url(url).delete(datosendjson.toRequestBody(tipopet))
             var client = OkHttpClient()
             client.newCall(request.build()).enqueue(responseCallback = object : Callback {
@@ -124,30 +121,32 @@ class DatosProducto : Fragment() {
                     }
                 }
                 override fun onFailure(call: Call, e: IOException) {
-                    println("tus mamadas")
+                    val actMain = activity as Activity
+                    actMain.runOnUiThread {
+                        Toast.makeText(context, "no se pudo", Toast.LENGTH_SHORT).show()
+                        println("no ok")
+                    }
                 }
             })
         }
-        return view
 
+        return view
     }
 
-    data class  datoeliminar(
+    data class  datosalmaceneliminar(
         var id: Int?
     )
 
-    //creo la clase con la que modelo los datos a mandar
-    data class datosproductoc(
+    data class datosalmacen(
         var id: Int?,
-        var codigo: String,
         var nombre: String,
-        var marca: String,
-        var descripcion: String,
-        var precio: String,
-        var cantidad: String,
-        var estatus: String
+        var telefono: String,
+        var pais: String,
+        var municipio: String,
+        var localidad: String,
+        var codigo_postal: String,
+        var calle: String
     )
-
 
     companion object {
         /**
@@ -156,12 +155,12 @@ class DatosProducto : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment DatosProducto.
+         * @return A new instance of fragment almacenAddFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            DatosProducto().apply {
+            almacenAddFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

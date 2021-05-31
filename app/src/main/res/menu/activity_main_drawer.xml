@@ -13,12 +13,12 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_gallery" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/nav_almacen"
+            android:icon="@drawable/ic_almacen_almacen"
+            android:title="@string/menu_alamacen" />
         <item
             android:id="@+id/nav_clientes"
-            android:icon="@drawable/ic_baseline_person_pin_24"
+            android:icon="@drawable/ic_store_products"
             android:title="@string/menu_clientes" />
     </group>
 </menu>

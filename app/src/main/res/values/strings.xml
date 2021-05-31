@@ -11,9 +11,11 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_alamacen">Almacenes</string>
     <string name="menu_clientes">Productos</string>
     <string name="menu_productos">Productos</string>
+    <!--almacen titulo-->
+    <string name="menu_almacen">Almacenes</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Petición jusjus</string>
     <string name="clienteTextbnt">Solicitar Json</string>
@@ -26,7 +28,16 @@
     <string name="txtprecio">Precio</string>
     <string name="txtcantidad">Cantidad</string>
     <string name="txtesta">Estatus</string>
-    <string name="txtbtng">Enviar</string>
+    <string name="txtbtng">Guardar</string>
     <string name="txtbtnborrar">Eliminar</string>
+
+    <!-- Fracmento almacenes -->
+    <string name="txtnomb_a">nombre</string>
+    <string name="txttel_a">telefono</string>
+    <string name="txtpais_a">pais</string>
+    <string name="txtmuni_a">municipio</string>
+    <string name="txtlocli_a">localidad</string>
+    <string name="txtcp_a">cp</string>
+    <string name="txtcalle_a">calle</string>
 
 </resources>

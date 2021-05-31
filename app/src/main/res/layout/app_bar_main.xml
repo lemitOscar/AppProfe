@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -27,7 +28,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_menu_add" />
+        android:layout_margin="2dp"
+        app:rippleColor="@color/purple_500"
+        android:backgroundTint="#48F321"
+        app:srcCompat="@drawable/ic_store_products" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal|left"
+        android:layout_margin="2dp"
+        app:rippleColor="@color/purple_500"
+        android:backgroundTint="#48F321"
+        app:srcCompat="@drawable/ic_almacen_almacen" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

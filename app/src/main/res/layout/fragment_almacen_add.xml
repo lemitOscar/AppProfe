@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".almacenAddFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <!--nombre-->
+    <EditText
+        android:id="@+id/idtxtnom_a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/txtnomb_a"
+        android:inputType="textPersonName" />
+    <!--telefono-->
+    <EditText
+        android:id="@+id/idtxttel_a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/txttel_a"
+        android:inputType="textPersonName" />
+    <!--pais-->
+    <EditText
+        android:id="@+id/idtxtpais_a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/txtpais_a"
+        android:inputType="textPersonName" />
+    <!--municipio-->
+    <EditText
+        android:id="@+id/idtxtmuni_a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/txtmuni_a"
+        android:inputType="textPersonName" />
+    <!--localidad-->
+    <EditText
+        android:id="@+id/idtxtloca_a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/txtlocli_a"
+        android:inputType="textPersonName" />
+    <!--cp-->
+    <EditText
+        android:id="@+id/idtxtcodi_a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/txtcp_a"
+        android:inputType="number" />
+    <!--calle-->
+    <EditText
+        android:id="@+id/idtxtcalle_a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/txtcalle_a"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/idtxtbtnenviar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#72D301"
+        android:text="@string/txtbtng" />
+    <Button
+        android:id="@+id/idtxteliminarr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#EA6035"
+        android:text="@string/txtbtnborrar" />
+
+</LinearLayout>

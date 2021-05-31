@@ -29,6 +29,11 @@ class MainActivity : AppCompatActivity() {
         binding.appBarMain.fab.setOnClickListener { view ->
             val navController = findNavController(R.id.nav_host_fragment_content_main)
             navController.navigate(R.id.nav_regis_datos)
+
+        }
+        binding.appBarMain.fab2.setOnClickListener{
+            val navController = findNavController(R.id.nav_host_fragment_content_main)
+            navController.navigate(R.id.nav_regis_datos_Almacen)
         }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
@@ -37,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_regis_datos
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_almacen, R.id.nav_regis_datos, R.id.nav_regis_datos_Almacen
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
