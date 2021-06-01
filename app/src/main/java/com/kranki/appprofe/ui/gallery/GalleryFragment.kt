@@ -1,45 +1,106 @@
 package com.kranki.appprofe.ui.gallery
 
+import android.app.Activity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.kranki.appprofe.R
-import com.kranki.appprofe.databinding.FragmentGalleryBinding
+import okhttp3.*
+import java.io.IOException
+
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
 
 class GalleryFragment : Fragment() {
 
-    private lateinit var galleryViewModel: GalleryViewModel
-    private var _binding: FragmentGalleryBinding? = null
+    // TODO: Rename and change types of parameters
+    private var param1: String? = null
+    private var param2: String? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            param1 = it.getString(ARG_PARAM1)
+            param2 = it.getString(ARG_PARAM2)
+        }
+        setHasOptionsMenu(true)
+    }
 
+    //----------------------------- para genenrar el boton de listar almacenes
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        var listaClient = (activity as Activity).findViewById<RecyclerView>(R.id.listaClient)
+
+        when (item.itemId) {
+            R.id.action_settings -> {
+                //sincronizar(listaClientes)
+            }
+            R.id.action_sincro -> {
+                sincronizar(listaClient)
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_productos, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    //------------------------------------------------------ llamar btn
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        galleryViewModel =
-            ViewModelProvider(this).get(GalleryViewModel::class.java)
+        // Inflate the layout for this fragment
+        var view = inflater.inflate(R.layout.fragment_gallery, container, false)
+        var listaClient = view.findViewById<RecyclerView>(R.id.listaClient)
+        listaClient.layoutManager = LinearLayoutManager(context)
+        return view;
+    }
 
-        _binding = FragmentGalleryBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+    //------------------------------ funcion para listar
+    public fun sincronizar(listaClient: RecyclerView) {
 
-        val textView: TextView = binding.textGallery
-        galleryViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+        // inyectar datos
+        var urldatos = "http://192.168.1.79:8000/api/listar_clientes"
+        var request = Request.Builder().url(urldatos).build()
+        var cliente = OkHttpClient()
+
+        //sobrescribir metodos
+
+        cliente.newCall(request).enqueue(object : Callback {
+            override fun onResponse(call: Call, response: Response) {
+                var textojson = response?.body?.string()
+                val actMain = activity as Activity
+                actMain.runOnUiThread {
+                    var datosjson = Gson()
+                    var clientes = datosjson?.fromJson(textojson, Array<DatosClient>::class.java)
+                    //aqui se manda el adaptador
+                    listaClient.adapter = GalleryFragmentAdapter(clientes)
+                }
+            }
+            override fun onFailure(call: Call, e: IOException) {
+                val actMain = activity as Activity
+                actMain.runOnUiThread {
+                    Toast.makeText(context, "no jale bro sorry" + e.message, Toast.LENGTH_SHORT).show()
+                }
+            }
         })
-        return root
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+    //----------------------------------- clase  para manejar datos------------------------------------------------------------------
+    class DatosClient(
+        var id: Int,
+        var nombre: String,
+        var email: String,
+        var telefono: String,
+        var pais: String,
+        var municipio: String,
+        var localidad: String,
+        var codigo_postal: String
+    )
 }
