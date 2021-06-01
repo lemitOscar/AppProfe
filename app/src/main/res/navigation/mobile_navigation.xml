@@ -17,29 +17,43 @@
         android:name="com.kranki.appprofe.ui.gallery.GalleryFragment"
         android:label="@string/menu_client"
         tools:layout="@layout/fragment_gallery" />
+
     <!--  Menu de almacen  -->
     <fragment
         android:id="@+id/nav_almacen"
         android:name="com.kranki.appprofe.ui.almacen.fragment_almacen"
         android:label="@string/menu_alamacen"
         tools:layout="@layout/fragment_almacen" />
+
     <!--  Menu de LISTAR PRODUCTOS  -->
     <fragment
         android:id="@+id/nav_clientes"
         android:name="com.kranki.appprofe.ui.clientes.ClienteFragment"
         android:label="@string/menu_clientes"
         tools:layout="@layout/fragment_cliente" />
+
+    <!--                       INSERTAR                             -->
+
     <!--  Menu de REGISTRAR PRODUCTOS  -->
     <fragment
         android:id="@+id/nav_regis_datos"
         android:name="com.kranki.appprofe.ui.producto.DatosProducto"
         android:label="@string/menu_productos"
         tools:layout="@layout/fragment_datos_producto" />
+
     <!--  Menu de REGISTRAR Almacen  -->
     <fragment
         android:id="@+id/nav_regis_datos_Almacen"
         android:name="com.kranki.appprofe.ui.almacen.almacenAddFragment"
         android:label="@string/menu_alamacen"
         tools:layout="@layout/fragment_almacen_add" />
+
+    <!--  Menu de REGISTRAR clientes  -->
+
+    <fragment
+        android:id="@+id/nav_client_resgis_datos"
+        android:name="com.kranki.appprofe.ui.gallery.Gallery_add"
+        android:label="@string/menu_Clientess"
+        tools:layout="@layout/fragment_gallery_add" />
 
 </navigation>

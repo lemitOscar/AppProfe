@@ -26,8 +26,8 @@ class GalleryFragmentAdapter(val datos: Array<GalleryFragment.DatosClient>) :
             val navController = holder.itemView.findNavController()
             var objson = Gson();
             var datos = objson.toJson(datos[position]);
-            var bundle = bundleOf("dproductos" to datos)
-            navController.navigate(R.id.nav_regis_datos, bundle)
+            var bundle = bundleOf("dpdatosclient" to datos)
+            navController.navigate(R.id.nav_client_resgis_datos, bundle)
         }
 
         nombre.text = datos[position].nombre;

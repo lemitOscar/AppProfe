@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".Gallery_add">
+
+    <!-- TODO: Update blank fragment layout -->
+    <!--nombre-->
+    <EditText
+        android:id="@+id/idtxtnom_c"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/txtnamec"
+        android:inputType="textPersonName" />
+    <!--email-->
+    <EditText
+        android:id="@+id/idtxtemail_c"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/txtemailc"
+        android:inputType="textPersonName" />
+    <!--telefono-->
+    <EditText
+        android:id="@+id/idtxtel_c"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/txttelc"
+        android:inputType="textPersonName" />
+    <!--pais-->
+    <EditText
+        android:id="@+id/idtxtpais_c"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/txtpaisc"
+        android:inputType="textPersonName" />
+    <!--municipio-->
+    <EditText
+        android:id="@+id/idtxtmunic_c"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/txtmunic"
+        android:inputType="textPersonName" />
+    <!--localidad-->
+    <EditText
+        android:id="@+id/idtxtlocli_c"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/txtlocalic"
+        android:inputType="textPersonName" />
+    <!--cp-->
+    <EditText
+        android:id="@+id/idtxtcp_c"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="@string/txtcpc"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/idtxtbtnenviar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#72D301"
+        android:text="@string/txtbtng" />
+    <Button
+        android:id="@+id/idtxteliminarr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#EA6035"
+        android:text="@string/txtbtnborrar" />
+
+</LinearLayout>

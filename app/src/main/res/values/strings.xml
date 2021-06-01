@@ -16,6 +16,7 @@
     <string name="menu_productos">Productos</string>
     <!--almacen titulo-->
     <string name="menu_almacen">Almacenes</string>
+    <string name="menu_Clientess">Clientes</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Petición jusjus</string>
     <string name="clienteTextbnt">Solicitar Json</string>
@@ -39,5 +40,14 @@
     <string name="txtlocli_a">localidad</string>
     <string name="txtcp_a">cp</string>
     <string name="txtcalle_a">calle</string>
+
+    <!-- Fracmento clientes -->
+    <string name="txtnamec">nombre</string>
+    <string name="txtemailc">email</string>
+    <string name="txttelc">telefono</string>
+    <string name="txtpaisc">pais</string>
+    <string name="txtmunic">municipio</string>
+    <string name="txtlocalic">localidad</string>
+    <string name="txtcpc">cp</string>
 
 </resources>

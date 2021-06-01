@@ -43,4 +43,14 @@
         android:backgroundTint="#48F321"
         app:srcCompat="@drawable/ic_almacen_almacen" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_margin="2dp"
+        app:rippleColor="@color/purple_500"
+        android:backgroundTint="#48F321"
+        app:srcCompat="@drawable/ic_baseline_person_pin_24" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
