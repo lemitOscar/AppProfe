@@ -1,5 +1,6 @@
 package com.kranki.appprofe
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
@@ -51,6 +52,12 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        //aqui va el intent
+        val intent = Intent(this,LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

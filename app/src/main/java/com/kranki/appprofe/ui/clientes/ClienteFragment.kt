@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.kranki.appprofe.R
 import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.IOException
 
 // TODO: Rename parameter arguments, choose names that match
@@ -76,10 +78,22 @@ class ClienteFragment : Fragment() {
 
     public fun sincronizar(listacliente: RecyclerView) {
         Toast.makeText(context, "btn click", Toast.LENGTH_SHORT).show()
-        var urldatos = "http://192.168.1.79:8000/api/listar_productos"
-        var request = Request.Builder().url(urldatos).build()
+        var urldatos = "http://192.168.1.79:8000/api/listar_productos_filtro"
+
+        //para primera conexion
+        var tipopeticion = "application/json;charset=UTF-8".toMediaType()
+
+        var gson = Gson()
+        var datosjson = gson.toJson(datospeticion("%4615338528"))
+
+        var request = Request.Builder().url(urldatos).post(datosjson.toRequestBody(tipopeticion))
+        var token = "4|E1K81FwxUbxSkiFwX3E9XTZtW34tHR8S9NtKqBbd"
+        request.addHeader("Accept","application/json")
+        request.addHeader("Authorization","Bearer "+token)
+
+
         var cliente = OkHttpClient()
-        cliente.newCall(request).enqueue(object : Callback {
+        cliente.newCall(request.build()).enqueue(object : Callback {
             override fun onResponse(call: Call, response: Response) {
                 var textojson = response?.body?.string()
                 //print(textojson)
@@ -110,13 +124,14 @@ class ClienteFragment : Fragment() {
         var id: Int,
         var codigo: String,
         var nombre: String,
-        var marca: String,
-        var descripcion: String,
-        var precio: Float,
-        var cantidad: Int,
-        var estatus: Int
-
+        var marca: String
     )
+
+    data class datospeticion(
+        var codigo : String
+    )
+
+
 
 
     companion object {

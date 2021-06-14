@@ -50,4 +50,12 @@
     <string name="txtlocalic">localidad</string>
     <string name="txtcpc">cp</string>
 
+    <!--Material desing-->
+    <string name="textmail">Correo Electronico</string>
+    <string name="textmailfigure">Mail</string>
+    <string name="textpass">Password</string>
+    <string name="textlogin">login</string>
+    <string name="textloginregister">Register</string>
+    <string name="textslogan">Welcome Krankis</string>
+
 </resources>
