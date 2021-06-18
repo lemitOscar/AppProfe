@@ -25,7 +25,16 @@
     <!-- Defined a new style with three items of color. -->
     <style name="DemoTheme" parent="Theme.AppProfe.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:windowBackground">
+            @drawable/slpash
+        </item>
         <item name="android:statusBarColor">#FFFFFF</item>
     </style>
+
+    <style name="Splashss" parent="Theme.AppProfe.NoActionBar">
+
+    </style>
+
+
 
 </resources>

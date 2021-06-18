@@ -23,6 +23,8 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Thread.sleep(1000)
+        //setTheme(R.style.Theme_AppProfe)
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_login)
         //enlazo el layout

@@ -20,7 +20,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
+        //tardar pantalla
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
