@@ -54,9 +54,18 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         //aqui va el intent
-        val intent = Intent(this,LoginActivity::class.java)
+        /*val intent = Intent(this,LoginActivity::class.java)
         startActivity(intent)
-        finish()
+        finish()*/
+
+        //nueva validacion login
+
+        val myIntent = intent
+        if(myIntent?.getStringExtra("Acceso")!="Ok"){
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
     }
 

@@ -33,8 +33,8 @@ class ClientesAdapter(val datos: Array<ClienteFragment.DatosProducto>) :
             val navController = holder.itemView.findNavController()
             var objson = Gson();
             var datos = objson.toJson(datos[position]);
-            //var bundle = bundleOf("dproductos" to datos)
-            //navController.navigate(R.id.nav_regis_datos, bundle)
+            var bundle = bundleOf("dproductos" to datos)
+            navController.navigate(R.id.nav_regis_datos, bundle)
         }
 
         //codigo

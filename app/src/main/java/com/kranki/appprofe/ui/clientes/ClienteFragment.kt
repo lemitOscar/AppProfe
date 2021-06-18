@@ -1,6 +1,7 @@
 package com.kranki.appprofe.ui.clientes
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.kranki.appprofe.R
+import com.kranki.appprofe.db.dbHelper
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -76,20 +78,51 @@ class ClienteFragment : Fragment() {
         return view
     }
 
-    public fun sincronizar(listacliente: RecyclerView) {
-        Toast.makeText(context, "btn click", Toast.LENGTH_SHORT).show()
+    //----------------------------------- clase ------------------------------------------------------------------
+    class DatosProducto(
+        var id: Int?,
+        var codigo: String,
+        var nombre: String,
+        var marca: String,
+        var descripcion: String,
+        var precio: String,
+        var cantidad: String,
+        var estatus: String
+    )
+
+    fun sincronizar(listacliente: RecyclerView) {
+        Toast.makeText(context, "Sincronizando", Toast.LENGTH_SHORT).show()
         var urldatos = "http://192.168.1.79:8000/api/listar_productos_filtro"
 
         //para primera conexion
         var tipopeticion = "application/json;charset=UTF-8".toMediaType()
 
         var gson = Gson()
-        var datosjson = gson.toJson(datospeticion("%4615338528"))
+        var datosjson = gson.toJson(datospeticion("%"))
 
         var request = Request.Builder().url(urldatos).post(datosjson.toRequestBody(tipopeticion))
-        var token = "4|E1K81FwxUbxSkiFwX3E9XTZtW34tHR8S9NtKqBbd"
-        request.addHeader("Accept","application/json")
-        request.addHeader("Authorization","Bearer "+token)
+
+        val dbHelp = dbHelper(context as Context)
+        val dbRead = dbHelp.readableDatabase
+        val cursor = dbRead.query(
+            dbHelper.FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
+            null,             // The array of columns to return (pass null to get all)
+            null,              // The columns for the WHERE clause
+            null,          // The values for the WHERE clause
+            null,             // don't group the rows
+            null,              // don't filter by row groups
+            null               // The sort order
+        )
+
+        var token = ""
+
+        with(cursor) {
+            moveToNext()
+            token =
+                getString(getColumnIndexOrThrow(dbHelper.FeedReaderContract.FeedEntry.COLUMN_NAME_TOKEN))
+        }
+        request.addHeader("Accept", "application/json")
+        request.addHeader("Authorization", "Bearer " + token)
 
 
         var cliente = OkHttpClient()
@@ -119,19 +152,10 @@ class ClienteFragment : Fragment() {
         })
     }
 
-    //----------------------------------- clase ------------------------------------------------------------------
-    class DatosProducto(
-        var id: Int,
-        var codigo: String,
-        var nombre: String,
-        var marca: String
-    )
 
     data class datospeticion(
-        var codigo : String
+        var codigo: String
     )
-
-
 
 
     companion object {
