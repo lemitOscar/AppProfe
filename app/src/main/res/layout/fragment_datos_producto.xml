@@ -64,7 +64,7 @@
         android:ems="10"
         android:hint="@string/txtcantidad"
         android:inputType="number" />
-    <!--Estatus-->
+    <!--
     <EditText
         android:id="@+id/idtxtestat"
         android:layout_width="match_parent"
@@ -72,7 +72,7 @@
         android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="@string/txtesta"
-        android:inputType="number" />
+        android:inputType="number" />Estatus-->
 
     <Button
         android:id="@+id/idtxtbtnenviar"

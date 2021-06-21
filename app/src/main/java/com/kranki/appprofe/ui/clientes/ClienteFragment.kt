@@ -32,7 +32,10 @@ class ClienteFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
@@ -42,14 +45,14 @@ class ClienteFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        var listaClientes = (activity as Activity).findViewById<RecyclerView>(R.id.listaCliente)
+        //var listaClientes = (activity as Activity).findViewById<RecyclerView>(R.id.listaCliente)
 
         when (item.itemId) {
             R.id.action_settings -> {
                 //sincronizar(listaClientes)
             }
             R.id.action_sincro -> {
-                sincronizar(listaClientes)
+                //sincronizar(listaClientes)
             }
         }
 
@@ -70,7 +73,7 @@ class ClienteFragment : Fragment() {
         var view = inflater.inflate(R.layout.fragment_cliente, container, false)
         //var btnjson = view.findViewById<Button>(R.id.btnjson);
         var listacliente = view.findViewById<RecyclerView>(R.id.listaCliente)
-
+        sincronizar(listacliente)
         /*btnjson.setOnClickListener() {
             sincronizar(listacliente)
         }*/
@@ -86,12 +89,11 @@ class ClienteFragment : Fragment() {
         var marca: String,
         var descripcion: String,
         var precio: String,
-        var cantidad: String,
-        var estatus: String
+        var cantidad: String
     )
 
     fun sincronizar(listacliente: RecyclerView) {
-        Toast.makeText(context, "Sincronizando", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(context, "Sincronizando", Toast.LENGTH_SHORT).show()
         var urldatos = "http://192.168.1.79:8000/api/listar_productos_filtro"
 
         //para primera conexion

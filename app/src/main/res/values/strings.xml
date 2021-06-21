@@ -17,9 +17,13 @@
     <!--almacen titulo-->
     <string name="menu_almacen">Almacenes</string>
     <string name="menu_Clientess">Clientes</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Petición jusjus</string>
     <string name="clienteTextbnt">Solicitar Json</string>
+
+    <!-- Fracmento home -->
+    <string name="txthome">Desarrolladores</string>
 
     <!-- Fracmento datos producto -->
     <string name="txtcodigo">Código</string>

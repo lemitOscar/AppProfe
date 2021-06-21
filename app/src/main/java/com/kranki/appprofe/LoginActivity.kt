@@ -33,8 +33,11 @@ class LoginActivity : AppCompatActivity() {
 
         binding.btnAccesar.setOnClickListener {
 
-            val usuario = binding.txtusuariologin.editText?.text.toString()
-            val password = binding.txtpasswordlogin.editText?.text.toString()
+            /*val usuario = binding.txtusuariologin.editText?.text.toString()
+            val password = binding.txtpasswordlogin.editText?.text.toString()*/
+
+            var usuario = "2519160076.fnavar@gmail.com"
+            var password = "$"+"JFranciscoNavaR$"
 
             var url = "http://192.168.1.79:8000/api/login"
 

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.findNavController
 import com.google.gson.Gson
 import com.kranki.appprofe.R
 import com.kranki.appprofe.ui.almacen.almacenAddFragment
@@ -94,6 +95,8 @@ class Gallery_add : Fragment() {
                     val actMain = activity as Activity
                     actMain.runOnUiThread {
                         Toast.makeText(context, "Gurdado correctamente...", Toast.LENGTH_SHORT).show()
+                        val nav = view.findNavController()
+                        nav.navigate(R.id.nav_client)
                         println("ok")
                     }
                 }
@@ -101,7 +104,7 @@ class Gallery_add : Fragment() {
                     val actMain = activity as Activity
                     actMain.runOnUiThread {
                         Toast.makeText(context, "salio mal correctamente...", Toast.LENGTH_SHORT).show()
-                        println("ok")
+                        println("no ok")
                     }
                 }
             })
@@ -121,6 +124,8 @@ class Gallery_add : Fragment() {
                     actMain.runOnUiThread {
                         Toast.makeText(context, "Borrado Correctamente", Toast.LENGTH_SHORT).show()
                         println("borrado correcto")
+                        val nav = view.findNavController()
+                        nav.navigate(R.id.nav_client)
                     }
                 }
                 override fun onFailure(call: Call, e: IOException) {

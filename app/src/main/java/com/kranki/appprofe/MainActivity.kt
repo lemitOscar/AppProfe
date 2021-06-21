@@ -22,8 +22,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        //tardar pantalla
-
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

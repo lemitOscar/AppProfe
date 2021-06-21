@@ -40,14 +40,14 @@ class fragment_almacen : Fragment() {
 
     //----------------------------- para genenrar el boton de listar almacenes
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        var listaAlmacen = (activity as Activity).findViewById<RecyclerView>(R.id.listaAlmacen)
+        //var listaAlmacen = (activity as Activity).findViewById<RecyclerView>(R.id.listaAlmacen)
 
         when (item.itemId) {
             R.id.action_settings -> {
                 //sincronizar(listaClientes)
             }
             R.id.action_sincro -> {
-                sincronizar(listaAlmacen)
+
             }
         }
 
@@ -68,6 +68,7 @@ class fragment_almacen : Fragment() {
         var view = inflater.inflate(R.layout.fragment_almacen, container, false)
         var listaAlmacen = view.findViewById<RecyclerView>(R.id.listaAlmacen)
         listaAlmacen.layoutManager = LinearLayoutManager(context)
+        sincronizar(listaAlmacen)
         return view;
     }
 

@@ -9,6 +9,20 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+
+//mios para conexion
+import android.view.Menu
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.navigation.NavigationView
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.appcompat.app.AppCompatActivity
+import com.kranki.appprofe.databinding.ActivityMainBinding
+
 import com.google.gson.Gson
 import com.kranki.appprofe.R
 import okhttp3.*
@@ -31,6 +45,7 @@ class DatosProducto : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -43,6 +58,7 @@ class DatosProducto : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // **************************************************** ESTA ES LA CLASE PARA INSERTAR PRODUCTOS Y ACTURALIZAR****************************************
         var view = inflater.inflate(R.layout.fragment_datos_producto, container, false)
         //botones
@@ -55,7 +71,9 @@ class DatosProducto : Fragment() {
         var tdescrip = view.findViewById<TextView>(R.id.idtxtdesc)
         var tprecio = view.findViewById<TextView>(R.id.idtxtprec)
         var tcanti = view.findViewById<TextView>(R.id.idtxtcant)
-        var testat = view.findViewById<TextView>(R.id.idtxtestat)
+        //var testat = view.findViewById<TextView>(R.id.idtxtestat)
+
+
 
         //Prueba
         //tnombre.text = arguments?.getString("ejemplo");
@@ -69,7 +87,6 @@ class DatosProducto : Fragment() {
         tdescrip.text = datoProd?.descripcion
         tprecio.text = datoProd?.precio
         tcanti.text = datoProd?.cantidad
-        testat.text = datoProd?.estatus
 
 
         //----------------------------------------- metodo para guardar y actualizar------------------------------
@@ -85,27 +102,39 @@ class DatosProducto : Fragment() {
                     tmarca.text.toString(),
                     tdescrip.text.toString(),
                     tprecio.text.toString(),
-                    tcanti.text.toString(),
-                    testat.text.toString(),
+                    tcanti.text.toString()
+
                 )
             )
             var request = Request.Builder().url(url).post(datosendjson.toRequestBody(tipopet))
             var client = OkHttpClient()
+            //para navegar
+
             client.newCall(request.build()).enqueue(responseCallback = object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     val actMain = activity as Activity
                     actMain.runOnUiThread {
-                        Toast.makeText(context, "Gurdado correctamente...", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Gurdado correctamente...", Toast.LENGTH_SHORT)
+                            .show()
                         println("ok")
+                        val nav = view.findNavController()
+                        nav.navigate(R.id.nav_clientes)
                     }
+
                 }
 
                 override fun onFailure(call: Call, e: IOException) {
-                    println("salio mal")
+                    val actMain = activity as Activity
+                    actMain.runOnUiThread {
+                        Toast.makeText(context, "no funciono correctamente...", Toast.LENGTH_SHORT)
+                            .show()
+                        println("no ok")
+
+                    }
                 }
             })
         }
-       // return view
+        // return view
         //---------------------------------- metodo para borrar
         btnelimiar.setOnClickListener {
             var url = "http://192.168.1.79:8000/api/eliminar_productos";
@@ -120,9 +149,12 @@ class DatosProducto : Fragment() {
                     val actMain = activity as Activity
                     actMain.runOnUiThread {
                         Toast.makeText(context, "Borrado Correctamente", Toast.LENGTH_SHORT).show()
+                        val nav = view.findNavController()
+                        nav.navigate(R.id.nav_clientes)
                         println("borrado ok")
                     }
                 }
+
                 override fun onFailure(call: Call, e: IOException) {
                     println("tus mamadas")
                 }
@@ -132,7 +164,7 @@ class DatosProducto : Fragment() {
 
     }
 
-    data class  datoeliminar(
+    data class datoeliminar(
         var id: Int?
     )
 
@@ -144,8 +176,7 @@ class DatosProducto : Fragment() {
         var marca: String,
         var descripcion: String,
         var precio: String,
-        var cantidad: String,
-        var estatus: String
+        var cantidad: String
     )
 
 

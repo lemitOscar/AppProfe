@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.findNavController
 import com.google.gson.Gson
 import com.kranki.appprofe.R
 import com.kranki.appprofe.ui.producto.DatosProducto
@@ -94,6 +95,8 @@ class almacenAddFragment : Fragment() {
                     val actMain = activity as Activity
                     actMain.runOnUiThread {
                         Toast.makeText(context, "Gurdado correctamente...", Toast.LENGTH_SHORT).show()
+                        val nav = view.findNavController()
+                        nav.navigate(R.id.nav_almacen)
                         println("ok")
                     }
                 }
@@ -117,6 +120,8 @@ class almacenAddFragment : Fragment() {
                     val actMain = activity as Activity
                     actMain.runOnUiThread {
                         Toast.makeText(context, "Borrado Correctamente", Toast.LENGTH_SHORT).show()
+                        val nav = view.findNavController()
+                        nav.navigate(R.id.nav_almacen)
                         println("borrado ok")
                     }
                 }
