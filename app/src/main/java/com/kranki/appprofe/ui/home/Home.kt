@@ -46,7 +46,7 @@ class Home : Fragment() {
         // Inflate the layout for this fragment
         lateinit var binding: ActivityCamara2Binding
         binding = ActivityCamara2Binding.inflate(layoutInflater)
-        //setContentView(binding.root)
+        //setContentView(binding.root) f
 
         var view = inflater.inflate(R.layout.fragment_homeo_oficial, container, false)
 
