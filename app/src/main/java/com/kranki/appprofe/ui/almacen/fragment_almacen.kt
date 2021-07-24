@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.kranki.appprofe.R
-import com.kranki.appprofe.ui.clientes.ClienteFragment
-import com.kranki.appprofe.ui.clientes.ClientesAdapter
 import okhttp3.*
 import java.io.IOException
 
@@ -76,7 +74,7 @@ class fragment_almacen : Fragment() {
     public fun sincronizar(listaAlmacen: RecyclerView) {
 
         // inyectar datos
-        var urldatos = "http://192.168.1.79:8000/api/listar_almacenes"
+        var urldatos = "https://choquis.puntodeventa9ids2.com/api/listar_almacenes"
         var request = Request.Builder().url(urldatos).build()
         var cliente = OkHttpClient()
 

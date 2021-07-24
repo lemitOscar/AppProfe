@@ -1,4 +1,4 @@
-package com.kranki.appprofe.ui.gallery
+package com.kranki.appprofe.ui.clientes
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.kranki.appprofe.R
-import com.kranki.appprofe.ui.clientes.CustomView
+import com.kranki.appprofe.ui.productos.CustomView
 
 class GalleryFragmentAdapter(val datos: Array<GalleryFragment.DatosClient>) :
     RecyclerView.Adapter<CustomView>() {

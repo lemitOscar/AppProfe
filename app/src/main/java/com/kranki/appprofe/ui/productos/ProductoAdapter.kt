@@ -1,4 +1,4 @@
-package com.kranki.appprofe.ui.clientes
+package com.kranki.appprofe.ui.productos
 
 
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.kranki.appprofe.R
 
-class ClientesAdapter(val datos: Array<ClienteFragment.DatosProducto>) :
+class ProductoAdapter(val datos: Array<ProductoFragment.DatosProducto>) :
     RecyclerView.Adapter<CustomView>() {
 
     override fun getItemCount(): Int {

@@ -16,7 +16,7 @@
     <!--  Menu de clientes  -->
     <fragment
         android:id="@+id/nav_client"
-        android:name="com.kranki.appprofe.ui.gallery.GalleryFragment"
+        android:name="com.kranki.appprofe.ui.clientes.GalleryFragment"
         android:label="@string/menu_client"
         tools:layout="@layout/fragment_gallery" />
 
@@ -30,7 +30,7 @@
     <!--  Menu de LISTAR PRODUCTOS  -->
     <fragment
         android:id="@+id/nav_clientes"
-        android:name="com.kranki.appprofe.ui.clientes.ClienteFragment"
+        android:name="com.kranki.appprofe.ui.productos.ProductoFragment"
         android:label="@string/menu_clientes"
         tools:layout="@layout/fragment_cliente" />
 
@@ -39,7 +39,7 @@
     <!--  Menu de REGISTRAR PRODUCTOS  -->
     <fragment
         android:id="@+id/nav_regis_datos"
-        android:name="com.kranki.appprofe.ui.producto.DatosProducto"
+        android:name="com.kranki.appprofe.ui.productos.DatosProducto"
         android:label="@string/menu_productos"
         tools:layout="@layout/fragment_datos_producto" />
 
@@ -54,7 +54,7 @@
 
     <fragment
         android:id="@+id/nav_client_resgis_datos"
-        android:name="com.kranki.appprofe.ui.gallery.Gallery_add"
+        android:name="com.kranki.appprofe.ui.clientes.Gallery_add"
         android:label="@string/menu_Clientess"
         tools:layout="@layout/fragment_gallery_add" />
 

@@ -23,7 +23,7 @@
     <string name="clienteTextbnt">Solicitar Json</string>
 
     <!-- Fracmento home -->
-    <string name="txthome">Desarrolladores</string>
+    <string name="txthome">Bienvenido</string>
 
     <!-- Fracmento datos producto -->
     <string name="txtcodigo">Código</string>

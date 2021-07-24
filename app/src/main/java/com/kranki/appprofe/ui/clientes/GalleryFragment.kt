@@ -1,4 +1,4 @@
-package com.kranki.appprofe.ui.gallery
+package com.kranki.appprofe.ui.clientes
 
 import android.app.Activity
 import android.os.Bundle
@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.kranki.appprofe.R
 
-import com.kranki.appprofe.ui.clientes.ClienteFragment
+import com.kranki.appprofe.ui.productos.ProductoFragment
 import okhttp3.*
 import java.io.IOException
 
@@ -79,7 +79,7 @@ class GalleryFragment : Fragment() {
     public fun sincronizar(listaClient: RecyclerView) {
 
         // inyectar datos
-        var urldatos = "http://192.168.1.79:8000/api/listar_clientes"
+        var urldatos = "https://choquis.puntodeventa9ids2.com/api/listar_clientes"
         var request = Request.Builder().url(urldatos).build()
         var cliente = OkHttpClient()
 
@@ -128,7 +128,7 @@ class GalleryFragment : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            ClienteFragment().apply {
+            ProductoFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString( ARG_PARAM2, param2)

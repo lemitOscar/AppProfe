@@ -1,11 +1,10 @@
-package com.kranki.appprofe.ui.clientes
+package com.kranki.appprofe.ui.productos
 
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,7 +26,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [ClienteFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ClienteFragment : Fragment() {
+class ProductoFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -94,7 +93,7 @@ class ClienteFragment : Fragment() {
 
     fun sincronizar(listacliente: RecyclerView) {
         //Toast.makeText(context, "Sincronizando", Toast.LENGTH_SHORT).show()
-        var urldatos = "http://192.168.1.79:8000/api/listar_productos_filtro"
+        var urldatos = "https://choquis.puntodeventa9ids2.com/api/listar_productos_filtro"
 
         //para primera conexion
         var tipopeticion = "application/json;charset=UTF-8".toMediaType()
@@ -130,15 +129,15 @@ class ClienteFragment : Fragment() {
         var cliente = OkHttpClient()
         cliente.newCall(request.build()).enqueue(object : Callback {
             override fun onResponse(call: Call, response: Response) {
-                var textojson = response?.body?.string()
+                var textojson = response.body?.string()
                 //print(textojson)
                 //castear para acceder a un metodo
                 val actMain = activity as Activity
                 actMain.runOnUiThread {
                     var datosjson = Gson()
-                    var clientes = datosjson?.fromJson(textojson, Array<DatosProducto>::class.java)
+                    var clientes = datosjson.fromJson(textojson, Array<DatosProducto>::class.java)
                     //definir adaptador
-                    listacliente.adapter = ClientesAdapter(clientes)
+                    listacliente.adapter = ProductoAdapter(clientes)
                     //Toast.makeText(context, "Sincroniza al 100", Toast.LENGTH_SHORT).show()
                 }
 
@@ -172,7 +171,7 @@ class ClienteFragment : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            ClienteFragment().apply {
+            ProductoFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

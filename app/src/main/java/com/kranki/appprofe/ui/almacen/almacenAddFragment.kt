@@ -12,7 +12,7 @@ import android.widget.Toast
 import androidx.navigation.findNavController
 import com.google.gson.Gson
 import com.kranki.appprofe.R
-import com.kranki.appprofe.ui.producto.DatosProducto
+import com.kranki.appprofe.ui.productos.DatosProducto
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -73,7 +73,7 @@ class almacenAddFragment : Fragment() {
 
         //---------------------------------------- metdods para guardar y actualizar
         btnguardar.setOnClickListener{
-            var url = "http://192.168.1.79:8000/api/guardar_almacenes"
+            var url = "https://choquis.puntodeventa9ids2.com/api/guardar_almacenes"
             var gson = Gson()
             val tipopet = "application/json;charset=UTF-8".toMediaType()
             var datosendjson = gson.toJson(
@@ -108,7 +108,7 @@ class almacenAddFragment : Fragment() {
 
         //metodo para borrar
         btnelimiar.setOnClickListener {
-            var url = "http://192.168.1.79:8000/api/eliminar_almacen";
+            var url = "https://choquis.puntodeventa9ids2.com/api/eliminar_almacen";
             var gson = Gson()
             val tipopet = "application/json;charset=UTF-8".toMediaType()
             var datosendjson = gson.toJson(DatosProducto.datoeliminar(datoProdd.id))

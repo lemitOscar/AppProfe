@@ -2,14 +2,11 @@ package com.kranki.appprofe
 
 import android.content.ContentValues
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.BaseColumns
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
-import androidx.core.graphics.toColor
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import com.google.gson.Gson
 import com.kranki.appprofe.databinding.ActivityLoginBinding
 import com.kranki.appprofe.db.dbHelper
@@ -17,6 +14,8 @@ import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.IOException
+import javax.net.ssl.SSLContext
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -36,10 +35,10 @@ class LoginActivity : AppCompatActivity() {
             /*val usuario = binding.txtusuariologin.editText?.text.toString()
             val password = binding.txtpasswordlogin.editText?.text.toString()*/
 
-            var usuario = "2519160076.fnavar@gmail.com"
-            var password = "$"+"JFranciscoNavaR$"
+           var usuario = "2519160076.fnavar@gmail.com"
+            var password = "$" + "JFranciscoNavaR$"
 
-            var url = "http://192.168.1.79:8000/api/login"
+            var url = "https://choquis.puntodeventa9ids2.com/api/login"
 
             var gJson = Gson()
 
@@ -47,18 +46,30 @@ class LoginActivity : AppCompatActivity() {
 
             var datosJsonProd = gJson.toJson(datosLogin(usuario, password))
 
+
             var request = Request.Builder().url(url).post(datosJsonProd.toRequestBody(tipoPet))
+
+
 
             request.addHeader("X-Requested-With", "XMLHttpRequest")
             var client = OkHttpClient()
 
+
+
             client.newCall(request.build()).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
-                    var datos = response?.body?.string()
 
-                    println("Respuesta Login-> " + datos)
 
-                    val respuesta = gJson?.fromJson(datos, datosWS::class.java)
+                    var datoss = response?.body?.string()
+                    //var userlogin = response?.
+
+                    println("Respuesta Login-> " + datoss)
+
+                    val respuesta = gJson?.fromJson(datoss, datosWS::class.java)
+
+
+                    var bundle = bundleOf("dlogin" to datoss)
+                    println("hola-----------------" + bundle)
 
                     if (respuesta.token == "") {
                         runOnUiThread {
@@ -133,6 +144,7 @@ class LoginActivity : AppCompatActivity() {
                             )
                         }
 
+
                         val intent = Intent(baseContext, MainActivity::class.java)
                         intent.putExtra("Acceso", "Ok")
                         startActivity(intent)
@@ -162,3 +174,5 @@ class LoginActivity : AppCompatActivity() {
     )
 
 }
+
+

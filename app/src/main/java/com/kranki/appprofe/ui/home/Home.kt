@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import com.google.gson.Gson
 import com.kranki.appprofe.R
+import com.kranki.appprofe.ui.productos.DatosProducto
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,8 +38,11 @@ class Home : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_homeo_oficial, container, false)
+        var view = inflater.inflate(R.layout.fragment_homeo_oficial, container, false)
+        return view;
     }
+
+
 
     companion object {
         /**
