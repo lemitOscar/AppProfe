@@ -62,4 +62,7 @@
     <string name="textloginregister">Register</string>
     <string name="textslogan">Welcome Krankis</string>
 
+    <!--Material desing menu principal-->
+    <string name="txtcamara">Tomar foto</string>
+
 </resources>

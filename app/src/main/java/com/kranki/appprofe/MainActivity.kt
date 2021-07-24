@@ -64,12 +64,12 @@ class MainActivity : AppCompatActivity() {
 
         //nueva validacion login
 
-        val myIntent = intent
+        /*val myIntent = intent
         if(myIntent?.getStringExtra("Acceso")!="Ok"){
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
-        }
+        }*/
 
     }
 
