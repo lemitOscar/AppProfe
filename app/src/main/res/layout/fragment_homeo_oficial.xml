@@ -18,6 +18,13 @@
             android:layout_height="wrap_content"
             android:text="@string/txtcamara" />
 
+        <Button
+            android:id="@+id/btgps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#03A9F4"
+            android:text="@string/txtgps" />
+
     </LinearLayout>
 
 

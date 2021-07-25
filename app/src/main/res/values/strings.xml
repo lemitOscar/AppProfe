@@ -64,5 +64,6 @@
 
     <!--Material desing menu principal-->
     <string name="txtcamara">Tomar foto</string>
+    <string name="txtgps">ir a google</string>
 
 </resources>

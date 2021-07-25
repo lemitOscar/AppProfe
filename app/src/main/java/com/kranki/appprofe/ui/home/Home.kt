@@ -1,36 +1,27 @@
 package com.kranki.appprofe.ui.home
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
-import com.google.gson.Gson
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.kranki.appprofe.Camara
 import com.kranki.appprofe.R
-import com.kranki.appprofe.databinding.ActivityCamara2Binding
-import com.kranki.appprofe.databinding.ActivityLoginBinding
-import com.kranki.appprofe.ui.productos.DatosProducto
-import kotlinx.android.synthetic.main.fragment_homeo_oficial.view.*
+import com.kranki.appprofe.UsegpsActivity
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Home.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class Home : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -43,36 +34,37 @@ class Home : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        lateinit var binding: ActivityCamara2Binding
-        binding = ActivityCamara2Binding.inflate(layoutInflater)
-        //setContentView(binding.root) f
-
         var view = inflater.inflate(R.layout.fragment_homeo_oficial, container, false)
 
-        var btntomarfotos = view.findViewById<Button>(R.id.btncamara)
-        btntomarfotos.setOnClickListener{
+        ///------------- METODO PARA TOMAR FOTO
+        var takefoto = view.findViewById<Button>(R.id.btncamara)
+        takefoto.setOnClickListener {
             val intent = Intent(getActivity(), Camara::class.java)
             startActivity(intent)
-
         }
 
+        //-------------METODO PARA ABRIR GOOGLE
+        var gotogoogle = view.findViewById<Button>(R.id.btgps)
+        gotogoogle.setOnClickListener {
+
+            val intent = Intent(getActivity(), UsegpsActivity::class.java)
+            startActivity(intent)
+
+        //INICIAR GOOGLE
+            /*val location = Uri.parse("geo:19.70260038242432,-98.98177092950176")
+            val mapIntent = Intent(Intent.ACTION_VIEW, location)
+            try {
+                startActivity(mapIntent)
+            } catch (e: ActivityNotFoundException) {
+            }
+            Toast.makeText(context, "si soy", Toast.LENGTH_SHORT).show()*/
+        }
         return view;
 
     }
 
 
-
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Home.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             Home().apply {
